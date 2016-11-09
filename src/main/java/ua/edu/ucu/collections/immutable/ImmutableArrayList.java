@@ -67,11 +67,11 @@ public class ImmutableArrayList implements ImmutableList {
                 new_list_2[i] = elements[i];
             }
             int l = 0;
-            for (int j = index; j < new_list_2.length - c.length; j++) {
+            for (int j = index; j < new_list_2.length - c.length + 1; j++) {
                 new_list_2[j] = c[l];
                 l += 1;
             }
-            for (int k = new_list_2.length - c.length; k < new_list_2.length; k++){
+            for (int k = index + c.length; k < new_list_2.length; k++){
                 new_list_2[k] = elements[index];
                 index ++;
             }

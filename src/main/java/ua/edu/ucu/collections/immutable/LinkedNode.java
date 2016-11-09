@@ -8,7 +8,7 @@ public class LinkedNode {
         this.data = data;
     }
     public Object getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(Object data) {

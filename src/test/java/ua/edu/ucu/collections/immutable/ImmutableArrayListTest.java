@@ -5,24 +5,28 @@ import static org.junit.Assert.*;
 
 public class ImmutableArrayListTest {
     private ImmutableArrayList testArr = new ImmutableArrayList(null);
-    private Object[] toAdd = {4, 7, "a", 8, 6.8};
+    private Object[] added = {1, 4, "o", "b", 8};
     public ImmutableArrayListTest (){
-
-
-        testArr = testArr.addAll(toAdd);
+        testArr = testArr.addAll(added);
     }
-
 
     @Test
     public void testAdd() {
-        String expected = "4,7,a,8,6.8,5";
+        String expected = "1,4,o,b,8,5";
         testArr = testArr.add(5);
         assertEquals(expected, testArr.toString());
     }
 
     @Test
+    public void testAdd1() {
+        String expected = "1,4,o,b,8,null";
+        testArr = testArr.add(null);
+        assertEquals(expected, testArr.toString());
+    }
+
+    @Test
     public void testAddAllEmptyList() {
-        String expected = "4,7,a,8,6.8";
+        String expected = "1,4,o,b,8";
         Object[] lst = {};
         testArr = testArr.addAll(lst);
         assertEquals(expected, testArr.toString());
@@ -30,37 +34,43 @@ public class ImmutableArrayListTest {
 
     @Test
     public void testAddAll() {
-        String expected = "4,7,a,8,6.8,4,7,a,8,6.8";
-        testArr = testArr.addAll(toAdd);
+        String expected = "1,4,o,b,8,1,4,o,b,8";
+        testArr = testArr.addAll(added);
         assertEquals(expected, testArr.toString());
     }
 
+    @Test
+    public void testAddAllTheSame() {
+        String expected = "1,4,o,b,8,1,1,1,1,1,1,1";
+        Object[] lst1 = {1, 1, 1, 1, 1, 1, 1};
+        testArr = testArr.addAll(lst1);
+        assertEquals(expected, testArr.toString());
+    }
 
     @Test
     public void testAddIndex() {
-        String expected = "4,7,b,a,8,6.8";
+        String expected = "a,1,4,o,b,8";
 
-        testArr = testArr.add(2, 'b');
+        testArr = testArr.add(0, 'a');
         assertEquals(expected, testArr.toString());
     }
     @Test(expected = IndexOutOfBoundsException.class)
     public void testAddAllTooLargeIndex() {
-        testArr = testArr.add('b');
-        testArr = testArr.addAll(5, toAdd);
+        testArr = testArr.addAll(7, added);
     }
     @Test
     public void testAddAllIndex() {
-        String expected = "4,4,7,a,8,6.8,7,a,8,6.8";
-        testArr = testArr.addAll(1, toAdd);
+        String expected = "1,1,4,o,b,8,4,o,b,8";
+        testArr = testArr.addAll(1, added);
         assertEquals(expected, testArr.toString());
     }
     @Test(expected = IndexOutOfBoundsException.class)
     public void testRemoveTooLargeIndex() {
-        testArr.remove(20);
+        testArr.remove(50);
     }
     @Test
     public void testRemove() {
-        String expected = "4,a,8,6.8";
+        String expected = "1,o,b,8";
 
         testArr = testArr.remove(1);
         assertEquals(expected, testArr.toString());
@@ -68,7 +78,7 @@ public class ImmutableArrayListTest {
     @Test
     public void testIndexOfIsInList() {
         int expected = 1;
-        assertEquals(expected, testArr.indexOf(7));
+        assertEquals(expected, testArr.indexOf(4));
     }
     @Test
     public void testIndexOfNotInList() {
@@ -87,6 +97,6 @@ public class ImmutableArrayListTest {
     }
     @Test
     public void testToArray() {
-        assertArrayEquals(toAdd, testArr.toArray());
+        assertArrayEquals(added, testArr.toArray());
     }
 }
