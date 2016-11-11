@@ -45,11 +45,19 @@ public class ImmutableLinkedList implements ImmutableList{
     } //додає елемент у кінець колекції
 
     public ImmutableLinkedList add(int index, Object e) throws IndexOutOfBoundsException{
-        if (index < 0 || index >= size()){
-            throw new IndexOutOfBoundsException();
-        }
-        else
-            return null;
+//        if (index < 0 || index >= size()){
+//            throw new IndexOutOfBoundsException();
+//        }
+//        else{
+//            ImmutableLinkedList new_one = this;
+//            for (int j = 0; j < index; j++){
+//
+//            }
+//            for (int i = 0; i < index; i++) {
+//                new_one = new_one.add(new_one[i]);
+//            }
+//            return new_one;
+        return null;
     } //додає елемент до колекції за індексом, та кидає виключну ситуацію, якщо індекс виходить за межі колекції
 
     public ImmutableLinkedList addAll(Object[] c){
@@ -67,8 +75,14 @@ public class ImmutableLinkedList implements ImmutableList{
         if (index < 0 || index >= size()){
             throw new IndexOutOfBoundsException();
         }
-        else
-        return null;
+        else{
+            ImmutableLinkedList new_one = this;
+            for (int i = 0; i < index; i++) {
+                new_one = new_one.add(c[i]);
+            }
+            
+
+        return null;}
     } // додає масив елементів починаючи з зазначеного індекса, та кидає виключну ситуацію, якщо індекс виходить за межі колекції
 
     public Object get(int index) throws IndexOutOfBoundsException{
